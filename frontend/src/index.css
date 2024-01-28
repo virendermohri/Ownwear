@@ -1,3 +1,113 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    /* background-color: #EEE; */
+}
+
+.b1 {
+    border: 1px solid red;
+}
+
+.nav {
+    margin-left: 50px;
+    font-weight: 500;
+}
+
+.nav2 {
+    display: none;
+    background-color: #FFF;
+}
+
+.nav li {
+    margin: 0px 10px 0px 10px;
+    font-size: 22px;
+}
+
+.nav2 li {
+    margin: 0px 5px 0px 5px;
+    font-size: 22px;
+    font-weight: 500;
+
+}
+
+
+.cart-btn {
+    font-size: 22px;
+
+}
+
+.login-btn {
+    
+    font-size: 22px;
+}
+.home{
+    /* background-color: #eee; */
+    /* border: 1px solid red; */
+}
+.home .item{
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+body::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+@media (max-width:1400px) {
+   .nav li{
+    font-size: 22px;
+   }
+   .nav2 li{
+    font-size: 22px;
+   }
+
+}
+
+@media (max-width:800px) {
+    .nav{
+        margin: 0px;
+    }
+}
+@media (max-width:765px) {
+    .nav li {
+        display: none;
+        font-size: 20px;
+    }
+   .nav2 {
+        display: block;
+
+    }
+
+    .cart-text {
+        display: none;
+    }
+
+}
+
+@media (max-width:450px) {
+
+    .nav2 li {
+        font-size: 18px;
+
+    }
+
+    .login-btn {
+        font-size: 20px;
+    }
+
+}
+@media (max-width:300px) {
+
+    .nav2 li {
+        font-size: 16px;
+    }
+
+    .login-btn {
+        font-size: 16px;
+    }
+    .navbar img{
+        max-width: 75%;
+    }
+}
