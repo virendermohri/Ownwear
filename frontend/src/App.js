@@ -16,23 +16,37 @@ import Hoodies from './Components/Hoodies';
 import Jewellery from './Components/Jewellery';
 import Notfoundpage from './Components/Notfoundpage';
 import Slug from './Components/Product/Slug';
+import { useState } from 'react';
+
 function App() {
+  const [cart, setCart] = useState({})
+  const [subTotal, setSubTotal] = useState(0)
+  const addToCart = (itemCode, qty, price, name, size, variant) => {
+    let newCart = cart;
+    if (itemCode in cart) {
+      newCart[itemCode].qty = newCart[itemCode].qty+qty;
+    }
+    else{
+      newCart[itemCode] = { qty: 1, price, name, size, variant }
+
+    }
+  }
   return (
     <>
       <Navbar />
       <Routes>
 
-        <Route exact path='*' element={<Notfoundpage/>} />
-        <Route exact path='/' element={<Home/>} />
-        <Route exact path='/AboutUs' element={<AboutUs/>}/>
-        <Route exact path='/Tshirts' element={<Tshirts/>}/>
-        <Route exact path='/Hoodies' element={<Hoodies/>}/>
-        <Route exact path='/Shoes' element={<Shoes/>}/>
-        <Route exact path='/Jewellery' element={<Jewellery/>}/>
-        <Route exact path='/login' element={<Login  />}/>
-        <Route exact path='/signup' element={<Signup />}/>
-        <Route exact path='/slug' element={<Slug/>}/>
-        </Routes>
+        <Route exact path='*' element={<Notfoundpage />} />
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/AboutUs' element={<AboutUs />} />
+        <Route exact path='/Tshirts' element={<Tshirts />} />
+        <Route exact path='/Hoodies' element={<Hoodies />} />
+        <Route exact path='/Shoes' element={<Shoes />} />
+        <Route exact path='/Jewellery' element={<Jewellery />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/slug' element={<Slug />} />
+      </Routes>
 
       <Footer />
     </>
