@@ -16,36 +16,78 @@ import Hoodies from './Components/Hoodies';
 import Jewellery from './Components/Jewellery';
 import Notfoundpage from './Components/Notfoundpage';
 import Slug from './Components/Product/Slug';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("cart")) {
+        setCart(JSON.parse(localStorage.getItem("cart")))
+      }
+    } catch (error) {
+      console.log(error)
+      localStorage.clear()
+    }
+
+  },[])
+  const saveCart = (myCart) => {
+    localStorage.setItem("cart", JSON.stringify(myCart));
+    let sbt=0;
+    let keys=Object.keys(myCart)
+    for(let i=0;i<keys.length;i++){
+      sbt+= myCart[keys[i]].price*myCart[keys[i]].qty
+      
+    }
+    setSubTotal(sbt)
+  }
   const addToCart = (itemCode, qty, price, name, size, variant) => {
     let newCart = cart;
     if (itemCode in cart) {
-      newCart[itemCode].qty = newCart[itemCode].qty+qty;
+      newCart[itemCode].qty = newCart[itemCode].qty + qty;
     }
-    else{
+    else {
       newCart[itemCode] = { qty: 1, price, name, size, variant }
 
     }
+    setCart(newCart)
+    saveCart(newCart)
+  }
+  const removeFromCart = (itemCode, qty, price, name, size, variant) => {
+    let newCart =JSON.parse(JSON.stringify(cart));
+    // console.log(newCart)
+    if (itemCode in cart) {
+      newCart[itemCode]["qty"] = cart[itemCode].qty - qty;
+    }
+    console.log(newCart[itemCode]["qty"])
+    if (newCart[itemCode]["qty"] <= 0) {
+      delete newCart[itemCode]
+
+    }
+    setCart(newCart)
+    saveCart(newCart)
+  }
+  const clearCart = (itemCode, qty, price, name, size, variant) => {
+
+    setCart({})
+    saveCart({})
   }
   return (
     <>
-      <Navbar />
+      <Navbar  cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} />
       <Routes>
 
-        <Route exact path='*' element={<Notfoundpage />} />
+        <Route exact path='*' element={<Notfoundpage  />} />
         <Route exact path='/' element={<Home />} />
         <Route exact path='/AboutUs' element={<AboutUs />} />
         <Route exact path='/Tshirts' element={<Tshirts />} />
-        <Route exact path='/Hoodies' element={<Hoodies />} />
+        <Route exact path='/Hoodies' element={<Hoodies  />} />
         <Route exact path='/Shoes' element={<Shoes />} />
         <Route exact path='/Jewellery' element={<Jewellery />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/signup' element={<Signup />} />
-        <Route exact path='/slug' element={<Slug />} />
+        <Route exact path='/slug' element={<Slug cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
       </Routes>
 
       <Footer />

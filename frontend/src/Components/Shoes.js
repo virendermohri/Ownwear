@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Shoes = () => {
   return (
     <div>
-      <section className="text-gray-600 home mt-[100px]  body-font">
+      <section className="text-gray-600 home  mt-[10px] md:mt-[40px] body-font">
         <div className="container px-5 py-10 bg-white mx-auto">
           <div className="flex flex-wrap -m-4 justify-center">
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">

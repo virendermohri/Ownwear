@@ -1,7 +1,8 @@
-import React, { useRef,useState,useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-const Navbar = () => {
+const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
+  // console.log(cart, addToCart, removeFormCart, subTotal, clearCart)
   let location = useLocation();
   const togglecart = () => {
     if (ref.current.classList.contains('translate-x-full')) {
@@ -14,25 +15,11 @@ const Navbar = () => {
     }
   }
   const ref = useRef()
-  const [showNavbar, setShowNavbar] = useState("sticky-top")
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setShowNavbar(currentScrollPos < prevScrollPos ? "fixed top-0" : "");
-      setPrevScrollPos(currentScrollPos);
-    };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [prevScrollPos]);
   return (
     <>
 
-      <div className={`pt-3 navbar md:pb-3 pb-2  w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3 ${showNavbar}  `}>
+      <div className={`pt-3 navbar md:pb-3 pb-2  w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3   `}>
         <div className="logo mx-3  ">
           <Link to='/'>
 
@@ -54,7 +41,7 @@ const Navbar = () => {
           <button onClick={togglecart} className='bg-white  flex cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
         </div>
       </div>
-      <div className={`nav2 ${showNavbar} pb-2   md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
+      <div className={`nav2 pb-2   md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
         <ul className='flex justify-center  items-center '>
           <Link className={`${location.pathname === '/Tshirts' ? "active-nav" : ""}`} to="/Tshirts"><li>Tshirts</li></Link>
           <Link className={`${location.pathname === "/Hoodies" ? "active-nav" : ""}`} to="/Hoodies"><li>Hoodies</li></Link>
@@ -64,43 +51,24 @@ const Navbar = () => {
       </div>
       <div ref={ref} className="w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform translate-x-full">
         <h2 className='text-xl mt-2 font-bold text-center'>Shoping Cart</h2>
-        <span onClick={togglecart} className='absolute top-5 right-2 cursor-pointer text-blue-500 text-2xl'><i class="bi bi-x-circle-fill"></i></span>
+        <span onClick={togglecart} className='absolute top-5 right-2 cursor-pointer text-blue-500 text-2xl'><i className="bi bi-x-circle-fill"></i></span>
         <ol className='list-decimal font-semibold z'>
-          <li>
-            <div className="item flex  my-5">
-              <div className="w-2/3 font-semibold ">Tshirt - Wear the own style Tshirts</div>
-              <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i class="bi bi-dash-circle-fill cursor-pointer text-blue-500 "></i><span className='mx-2 text-sm'>1</span><i class="bi cursor-pointer text-blue-500 bi-plus-circle-fill"></i></div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex  my-5">
-              <div className="w-2/3 font-semibold ">Tshirt - Wear the own style Tshirts</div>
-              <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i class="bi bi-dash-circle-fill cursor-pointer text-blue-500 "></i><span className='mx-2 text-sm'>1</span><i class="bi cursor-pointer text-blue-500 bi-plus-circle-fill"></i></div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex  my-5">
-              <div className="w-2/3 font-semibold ">Tshirt - Wear the own style Tshirts</div>
-              <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i class="bi bi-dash-circle-fill cursor-pointer text-blue-500 "></i><span className='mx-2 text-sm'>1</span><i class="bi cursor-pointer text-blue-500 bi-plus-circle-fill"></i></div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex  my-5">
-              <div className="w-2/3 font-semibold ">Tshirt - Wear the own style Tshirts</div>
-              <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i class="bi bi-dash-circle-fill cursor-pointer text-blue-500 "></i><span className='mx-2 text-sm'>1</span><i class="bi cursor-pointer text-blue-500 bi-plus-circle-fill"></i></div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex  my-5">
-              <div className="w-2/3 font-semibold ">Tshirt - Wear the own style Tshirts</div>
-              <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i class="bi bi-dash-circle-fill cursor-pointer text-blue-500 "></i><span className='mx-2 text-sm'>1</span><i class="bi cursor-pointer text-blue-500 bi-plus-circle-fill"></i></div>
-            </div>
-          </li>
+          {Object.keys(cart).length == 0 &&
+            <div className='my-5 font-semibold'>Cart is empty! Add few items to Checkout</div>}
+          {Object.keys(cart).map((k) => {
+            return <li key={k}>
+              <div className="item flex  my-5">
+                <div className="w-2/3 font-semibold ">{cart[k].name}</div>
+                <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i className="bi bi-dash-circle-fill cursor-pointer text-blue-500 "onClick={()=>{removeFromCart(k,1,cart[k].price,cart[k].name,cart[k].size ,cart[k].variant)}}></i><span className='mx-2 text-sm'>{cart[k].qty}</span><i className="bi cursor-pointer text-blue-500 bi-plus-circle-fill"onClick={() => { addToCart("slug", 1, 499, "Hoodeis", "xl", "Green") }}></i></div>
+              </div>
+            </li>
+
+          })}
         </ol>
         <div className="flex">
 
-          <Link to ='/Slug' onClick={togglecart}><button class="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm"><i class="bi bi-bag-check-fill mx-1"></i> Checkout</button></Link>
-          <button class="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm">Clear Cart</button>
+          <Link to='/Slug' onClick={togglecart}><button className="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm"><i className="bi bi-bag-check-fill mx-1"></i> Checkout</button></Link>
+          <button onClick={clearCart} className="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm">Clear Cart</button>
         </div>
       </div>
     </>
