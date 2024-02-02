@@ -1,23 +1,38 @@
-import React, { useRef } from 'react'
+import React, { useRef,useState,useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   let location = useLocation();
-const togglecart=()=>{
-  if(ref.current.classList.contains('translate-x-full')){
-    ref.current.classList.remove('translate-x-full')
-    ref.current.classList.add('translate-x-0')
+  const togglecart = () => {
+    if (ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.remove('translate-x-full')
+      ref.current.classList.add('translate-x-0')
+    }
+    else if (!ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.add('translate-x-full')
+      ref.current.classList.remove('translate-x-0')
+    }
   }
-  else if(!ref.current.classList.contains('translate-x-full')){
-    ref.current.classList.add('translate-x-full')
-    ref.current.classList.remove('translate-x-0')
-  }
-}
-const ref=useRef()
+  const ref = useRef()
+  const [showNavbar, setShowNavbar] = useState("sticky-top")
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setShowNavbar(currentScrollPos < prevScrollPos ? "fixed top-0" : "");
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
   return (
     <>
 
-      <div className="pt-3 navbar md:pb-3 pb-2 fixed top-0 w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3   ">
+      <div className={`pt-3 navbar md:pb-3 pb-2  w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3 ${showNavbar}  `}>
         <div className="logo mx-3  ">
           <Link to='/'>
 
@@ -36,10 +51,10 @@ const ref=useRef()
           <div className="  ">
             <Link to='Login ' className='login-btn'>Login</Link>
           </div>
-          <button onClick={togglecart}  className='bg-white  flex cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
+          <button onClick={togglecart} className='bg-white  flex cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
         </div>
       </div>
-      <div className="nav2  pb-2  fixed top-[62px] w-full z-40 shadow-md mb-2 ">
+      <div className={`nav2 ${showNavbar} pb-2   md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
         <ul className='flex justify-center  items-center '>
           <Link className={`${location.pathname === '/Tshirts' ? "active-nav" : ""}`} to="/Tshirts"><li>Tshirts</li></Link>
           <Link className={`${location.pathname === "/Hoodies" ? "active-nav" : ""}`} to="/Hoodies"><li>Hoodies</li></Link>
@@ -47,8 +62,8 @@ const ref=useRef()
           <Link className={`${location.pathname === "/Jewellery" ? "active-nav" : ""}`} to="/Jewellery"><li>Jewellery</li></Link>
         </ul>
       </div>
-      <div ref={ref} className="w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl transform transition-transform translate-x-full">
-       <h2 className='text-xl mt-2 font-bold text-center'>Shoping Cart</h2>
+      <div ref={ref} className="w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform translate-x-full">
+        <h2 className='text-xl mt-2 font-bold text-center'>Shoping Cart</h2>
         <span onClick={togglecart} className='absolute top-5 right-2 cursor-pointer text-blue-500 text-2xl'><i class="bi bi-x-circle-fill"></i></span>
         <ol className='list-decimal font-semibold z'>
           <li>
@@ -82,7 +97,11 @@ const ref=useRef()
             </div>
           </li>
         </ol>
-        <button class="flex mx-auto mt-16 text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-sm"><i class="bi bi-bag-check-fill mx-1"></i> Checkout</button>
+        <div className="flex">
+
+          <Link to ='/Slug' onClick={togglecart}><button class="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm"><i class="bi bi-bag-check-fill mx-1"></i> Checkout</button></Link>
+          <button class="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm">Clear Cart</button>
+        </div>
       </div>
     </>
   )

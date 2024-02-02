@@ -15,6 +15,7 @@ import Shoes from './Components/Shoes';
 import Hoodies from './Components/Hoodies';
 import Jewellery from './Components/Jewellery';
 import Notfoundpage from './Components/Notfoundpage';
+import Slug from './Components/Product/Slug';
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
         <Route exact path='/Jewellery' element={<Jewellery/>}/>
         <Route exact path='/login' element={<Login  />}/>
         <Route exact path='/signup' element={<Signup />}/>
+        <Route exact path='/slug' element={<Slug/>}/>
         </Routes>
 
       <Footer />

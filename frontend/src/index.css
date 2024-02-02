@@ -54,7 +54,10 @@ body::-webkit-scrollbar {
     width: 0px;
     height: 0px;
 }
-
+.notfoundpage{
+    margin-top: 330px;
+    margin-bottom: 290px;
+}
 @media (max-width:1400px) {
    .nav li{
     font-size: 22px;

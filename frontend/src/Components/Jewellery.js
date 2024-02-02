@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 const Jewellery = () => {
   return (
     <div>
-        <section className="text-gray-600 home   body-font">
+        <section className="text-gray-600 home mt-[100px]  body-font">
         <div className="container px-5 py-10 bg-white mx-auto">
           <div className="flex flex-wrap -m-4 justify-center">
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -21,7 +21,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -34,7 +34,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -47,7 +47,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -60,7 +60,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -73,7 +73,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -86,7 +86,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
@@ -99,7 +99,7 @@ const Jewellery = () => {
             </Link>
             </div>
            <div className="lg:w-1/5 md:w-1/2  p-4 item w-full item shadow-lg m-5">
-           <Link to='/product'> 
+           <Link to='/Slug'> 
               <a className="block relative   rounded overflow-hidden">
                 <img alt="ecommerce" className="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://images.meesho.com/images/products/326824425/01hsh_512.webp" />
               </a>
