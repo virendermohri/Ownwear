@@ -71,10 +71,10 @@ const Slug = ({ cart, addToCart, removeFormCart, subTotal, clearCart }) => {
                 </div>
               </div>
             </div>
-            <div className="flex">
+            <div className="flex  items-center">
               <span className="title-font font-medium text-2xl text-gray-900"><i className="bi bi-currency-rupee"></i>499</span>
 
-              <button className="flex ml-6 text-white bg-blue-500 border-0 py-2 md:px-6 px-3 focus:outline-none hover:bg-blue-600 rounded">Buy</button>
+              <button className="flex ml-5 text-white bg-blue-500 border-0 py-2 md:px-6 px-4 focus:outline-none hover:bg-blue-600 rounded">Buy</button>
               <button onClick={() => { addToCart("slug", 1, 499, "Hoodeis", "xl", "Green") }} className="flex ml-4 text-white bg-blue-500 border-0 py-2 px-3 md:px-6 focus:outline-none hover:bg-blue-600 rounded">Add to Cart</button>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
