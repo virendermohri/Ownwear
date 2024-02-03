@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Slug = ({ cart, addToCart, removeFormCart, subTotal, clearCart }) => {
+  
+  
   return (
     <section className="text-gray-600 body-font   mb-[30px]  overflow-hidden">
       <div className="container px-5 py-10   mx-auto">

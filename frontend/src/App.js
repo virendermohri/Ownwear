@@ -17,6 +17,8 @@ import Jewellery from './Components/Jewellery';
 import Notfoundpage from './Components/Notfoundpage';
 import Slug from './Components/Product/Slug';
 import { useEffect, useState } from 'react';
+import Checkout from './Components/Checkout';
+import Order from './Components/Order';
 
 function App() {
   const [cart, setCart] = useState({})
@@ -25,12 +27,12 @@ function App() {
     try {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")))
+        saveCart(JSON.parse(localStorage.getItem("cart")))
       }
     } catch (error) {
       console.log(error)
       localStorage.clear()
     }
-
   },[])
   const saveCart = (myCart) => {
     localStorage.setItem("cart", JSON.stringify(myCart));
@@ -87,6 +89,8 @@ function App() {
         <Route exact path='/Jewellery' element={<Jewellery />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/Order' element={<Order/>} />
+        <Route exact path='/Checkout' element={<Checkout cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
         <Route exact path='/slug' element={<Slug cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
       </Routes>
 

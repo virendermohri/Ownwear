@@ -14,12 +14,13 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
       ref.current.classList.remove('translate-x-0')
     }
   }
+  
   const ref = useRef()
 
   return (
     <>
 
-      <div className={`pt-3 navbar md:pb-3 pb-2  w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3   `}>
+      <div className={`pt-3 navbar md:pb-3 pb-2  w-full z-40  flex body-font  bg-white  items-center md:shadow-lg md:shadow-md md:mb-3   sticky top-0 `}>
         <div className="logo mx-3  ">
           <Link to='/'>
 
@@ -41,7 +42,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
           <button onClick={togglecart} className='bg-white  flex cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
         </div>
       </div>
-      <div className={`nav2 pb-2   md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
+      <div className={`nav2 pb-2 sticky top-0  md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
         <ul className='flex justify-center  items-center '>
           <Link className={`${location.pathname === '/Tshirts' ? "active-nav" : ""}`} to="/Tshirts"><li>Tshirts</li></Link>
           <Link className={`${location.pathname === "/Hoodies" ? "active-nav" : ""}`} to="/Hoodies"><li>Hoodies</li></Link>
@@ -49,7 +50,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
           <Link className={`${location.pathname === "/Jewellery" ? "active-nav" : ""}`} to="/Jewellery"><li>Jewellery</li></Link>
         </ul>
       </div>
-      <div ref={ref} className="w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform translate-x-full">
+      <div ref={ref} className={`w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform ${Object.keys(cart).length!==0? "translate-x-0":"translate-x-full"}`}>
         <h2 className='text-xl mt-2 font-bold text-center'>Shoping Cart</h2>
         <span onClick={togglecart} className='absolute top-5 right-2 cursor-pointer text-blue-500 text-2xl'><i className="bi bi-x-circle-fill"></i></span>
         <ol className='list-decimal font-semibold z'>
@@ -65,9 +66,10 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
 
           })}
         </ol>
+        <div className='font-bold my-2'>SubTotal : <i className="bi bi-currency-rupee"></i>{subTotal}</div>
         <div className="flex">
 
-          <Link to='/Slug' onClick={togglecart}><button className="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm"><i className="bi bi-bag-check-fill mx-1"></i> Checkout</button></Link>
+          <Link to='/Checkout' onClick={togglecart}><button className="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm"><i className="bi bi-bag-check-fill mx-1"></i> Checkout</button></Link>
           <button onClick={clearCart} className="flex mr-2 text-white bg-blue-500 border-0 py-2 px-2 focus:outline-none hover:bg-blue-600 rounded text-sm">Clear Cart</button>
         </div>
       </div>
