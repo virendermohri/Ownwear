@@ -14,7 +14,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
       ref.current.classList.remove('translate-x-0')
     }
   }
-  
+
   const ref = useRef()
 
   return (
@@ -37,9 +37,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
         </div>
         <div className="mx-2 md:mx-5 flex gap-2 md:gap-4 absolute right-0">
           <div className="  ">
-            <Link to='Login ' className='login-btn'>Login</Link>
+            <Link to='/Login ' className='login-btn'>{!localStorage.getItem("token")?<i class="bi bi-person-circle text-2xl"></i>:"Login"}</Link>
           </div>
-          <button onClick={togglecart} className='bg-white  flex cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
+          <button onClick={togglecart} className='bg-white flex text-2xl cart-btn text-black'><i className="bi mx-2 bi-cart4"></i><p className='cart-text'> Cart</p></button>
         </div>
       </div>
       <div className={`nav2 pb-2 sticky top-0  md:top-[65px] max-[290px]:top-[55px] top-[65px]  w-full z-40 shadow-md pb-2 `}>
@@ -50,7 +50,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
           <Link className={`${location.pathname === "/Jewellery" ? "active-nav" : ""}`} to="/Jewellery"><li>Jewellery</li></Link>
         </ul>
       </div>
-      <div ref={ref} className={`w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform ${Object.keys(cart).length!==0? "translate-x-0":"translate-x-full"}`}>
+      <div ref={ref} className={`w-72  h-full z-50 sidecart fixed top-0 bg-blue-100  right-0 px-8 py-10 shadow-2xl  transform transition-transform ${Object.keys(cart).length !== 0 ? "translate-x-0" : "translate-x-full"}`}>
         <h2 className='text-xl mt-2 font-bold text-center'>Shoping Cart</h2>
         <span onClick={togglecart} className='absolute top-5 right-2 cursor-pointer text-blue-500 text-2xl'><i className="bi bi-x-circle-fill"></i></span>
         <ol className='list-decimal font-semibold z'>
@@ -60,7 +60,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
             return <li key={k}>
               <div className="item flex  my-5">
                 <div className="w-2/3 font-semibold ">{cart[k].name}</div>
-                <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i className="bi bi-dash-circle-fill cursor-pointer text-blue-500 "onClick={()=>{removeFromCart(k,1,cart[k].price,cart[k].name,cart[k].size ,cart[k].variant)}}></i><span className='mx-2 text-sm'>{cart[k].qty}</span><i className="bi cursor-pointer text-blue-500 bi-plus-circle-fill"onClick={() => { addToCart("slug", 1, 499, "Hoodeis", "xl", "Green") }}></i></div>
+                <div className="w-1/3 flex font-semibold items-center justify-center  text-lg"><i className="bi bi-dash-circle-fill cursor-pointer text-blue-500 " onClick={() => { removeFromCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}></i><span className='mx-2 text-sm'>{cart[k].qty}</span><i className="bi cursor-pointer text-blue-500 bi-plus-circle-fill" onClick={() => { addToCart("slug", 1, 499, "Hoodeis", "xl", "Green") }}></i></div>
               </div>
             </li>
 

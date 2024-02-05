@@ -19,6 +19,7 @@ import Slug from './Components/Product/Slug';
 import { useEffect, useState } from 'react';
 import Checkout from './Components/Checkout';
 import Order from './Components/Order';
+import ForgotPassword from './Components/ForgotPassword';
 
 function App() {
   const [cart, setCart] = useState({})
@@ -89,6 +90,7 @@ function App() {
         <Route exact path='/Jewellery' element={<Jewellery />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/Forgot-Password' element={<ForgotPassword/>} />
         <Route exact path='/Order' element={<Order/>} />
         <Route exact path='/Checkout' element={<Checkout cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
         <Route exact path='/slug' element={<Slug cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
