@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
-const expres =require('express')
-const app =expres();
-const cors =require("cors")
+const express = require('express')
+const app = express();
+const cors = require("cors")
+const bodyParser = require('body-parser');
 app.use(cors())
+app.use(bodyParser.json());
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/Ownwear');
-    console.log('')
+    await mongoose.connect('mongodb://127.0.0.1:27017/Ownwear');
+    console.log('db conected')
 }
+app.use(express.json())
 app.use("/api/auth", require('./routes/auth'))
-
-app.listen(8700,()=>{
+app.set("view engin", "ejs")
+app.listen(8300, () => {
     console.log("Server start at 8000...")
 })
