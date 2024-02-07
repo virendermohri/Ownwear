@@ -13,7 +13,8 @@ async function main() {
 }
 app.use(express.json())
 app.use("/api/auth", require('./routes/auth'))
+app.use("/api/products", require('./routes/products'))
 app.set("view engin", "ejs")
-app.listen(8300, () => {
-    console.log("Server start at 8000...")
+app.listen(3000, () => {
+    console.log("Server start at 3000...")
 })

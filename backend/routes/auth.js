@@ -15,10 +15,8 @@ router.post("/signup", [
 ], async (req, res) => {
     let success = false;
     // if there are errors,return bad request
-    const errors = validationResult(req);
-    console.log(errors)
+    const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
-        console.log("jjj")
         return res.status(400).json({ success, errors: errors.array() });    
     }
 
@@ -27,7 +25,7 @@ router.post("/signup", [
 
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            console.log(user)
+            console.log("Sorry a user used this email ",user)
             return res.status(400).json({ success, error: "Sorry a user with this email already exists" })
         }
         const salt = await bcrypt.genSalt(10);
