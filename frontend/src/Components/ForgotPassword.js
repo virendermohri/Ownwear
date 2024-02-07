@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const ForgotPassword = () => {
   return (
     <section className="">
-            <div className="flex flex-col items-center justify-center px-6 py-8  mx-auto md:h-full lg:py-5">
+            <div className="flex flex-col items-center justify-center px-6 py-30 md:my-0  mx-auto md:h-screen lg:py-5">
 
                 <div className="w-full bg-white rounded-lg shadow   md:py-5 py-auto  sm:max-w-md xl:p-0 ">
                     
@@ -13,7 +13,7 @@ const ForgotPassword = () => {
                             Forgot your password
                         </h1>
 
-                        <p>Start wear your design in seconds. Don’t have an account? <Link to='/Sign up' className='font-medium text-blue-600 hover:underline'>Sign up</Link>.</p>
+                        <p>Start wear your design in seconds. Don’t have an account? <Link to='/Signup' className='font-medium text-blue-600 hover:underline'>Sign up</Link>.</p>
 
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>

@@ -24,7 +24,7 @@ const Navbar = ({ cart, addToCart, removeFromCart, subTotal, clearCart }) => {
         <div className="logo mx-3  ">
           <Link to='/'>
 
-            <img src="logo.png" className='' width={200} height={40} alt="" />
+            <img src="/logo.png" className='' width={200} height={40} alt="" />
           </Link>
         </div>
         <div className="nav   ">

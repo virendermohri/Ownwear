@@ -65,7 +65,7 @@ router.post('/update', [
         let msg = [];
         for (let i = 0; i < req.body.length; i++) {
             let p = await Product.findById(req.body[i]._id);
-            if(p){
+            if (p) {
                 await Product.findByIdAndUpdate(req.body[i]._id, req.body[i])
             } else {
                 msg.push(`Product with ID ${req.body[i]._id} not found`);
@@ -82,19 +82,6 @@ router.post('/update', [
     }
 });
 
-// Fetch all products
-router.get("/getall", async (req, res) => {
-    try {
-        let success = false;
-        let products = await Product.find({});
-        success = true;
-        res.status(200).json({ success, products })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ success: false, error: "Internal Server Error" });
-    }
-})
-
 
 // Delete products
 router.delete("/delete", async (req, res) => {
@@ -102,21 +89,21 @@ router.delete("/delete", async (req, res) => {
         let msg = [];
         let success = false;
         for (let i = 0; i < req.body.length; i++) {
-            let p=await  Product.findById(req.body[i]._id)
-            if(p){
+            let p = await Product.findById(req.body[i]._id)
+            if (p) {
 
                 await Product.findByIdAndDelete(req.body[i]._id)
             }
-            else{
+            else {
                 msg.push(`Product with ID ${req.body[i]._id} not found`);
             }
 
         }
-        if(msg.length===0){
+        if (msg.length === 0) {
 
             success = true;
         }
-        res.status(200).json({ success ,msg})
+        res.status(200).json({ success, msg })
 
     } catch (error) {
         console.log(error)
@@ -124,4 +111,38 @@ router.delete("/delete", async (req, res) => {
     }
 })
 
+
+
+// Fetch all products
+router.get("/getall", async (req, res) => {
+    try {
+        let success = false;
+        let products = await Product.find({});
+        let tshirts = {};
+        for (let item of products) {
+            if (item.title in tshirts) {
+                if (!tshirts[item.title].color.includes(item.color) && item.availableQty > 0) {
+                    tshirts[item.title].color.push(item.color)
+                }
+                if (!tshirts[item.title].size.includes(item.size) && item.availableQty > 0) {
+                    tshirts[item.title].size.push(item.size)
+                }
+
+            }
+            else {
+                tshirts[item.title] = JSON.parse(JSON.stringify(item))
+                if (item.availableQty > 0) {
+                    tshirts[item.title].color = [item.color]
+                    tshirts[item.title].size = [item.size]
+                }
+            }
+        }
+
+        success = true;
+        res.status(200).json({ success, products,tshirts:JSON.parse(JSON.stringify(tshirts))})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+})
 module.exports = router;
