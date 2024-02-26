@@ -9,10 +9,10 @@ const Order = () => {
         <h2 className="text-sm title-font text-gray-500 tracking-widest">Ownwear.com</h2>
         <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">Order Id :8946763</h1>
         <p className="leading-relaxed mb-4">Your order has been successfully placed</p>
-        <div class="flex mb-4">
-          <a class="flex-grow text-center cursor-pointer py-2 text-lg px-1">Description</a>
-          <a class="flex-grow text-center cursor-pointer py-2 text-lg px-1">Quantity</a>
-          <a class="flex-grow text-center cursor-pointer py-2 text-lg px-1">Item Total</a>
+        <div className="flex mb-4">
+          <a className="flex-grow text-center cursor-pointer py-2 text-lg px-1">Description</a>
+          <a className="flex-grow text-center cursor-pointer py-2 text-lg px-1">Quantity</a>
+          <a className="flex-grow text-center cursor-pointer py-2 text-lg px-1">Item Total</a>
         </div>
         <div className="flex border-t border-gray-200 py-2">
           <span className="text-gray-500">Wear the Code (xl/black)</span>

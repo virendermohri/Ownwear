@@ -8,8 +8,8 @@ const ProductSchema = new mongoose.Schema({
     size: { type: String, },
     color: { type: String, },
     price: { type: Number, required: true },
-    availableQty: { type: Number, required: true },
-
-},{timestamps:true})
+    availableQty: { type: Number, required: true }
+   
+})
 const Product=mongoose.model("Product",ProductSchema);
 module.exports=Product;

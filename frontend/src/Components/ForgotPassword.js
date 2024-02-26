@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const ForgotPassword = () => {
   return (
     <section className="">
-            <div className="flex flex-col items-center justify-center px-6 py-30 md:my-0  mx-auto md:h-screen lg:py-5">
+            <div className="flex flex-col items-center justify-center px-6 py-30 md:my-0  mx-auto h-screen lg:py-5">
 
                 <div className="w-full bg-white rounded-lg shadow   md:py-5 py-auto  sm:max-w-md xl:p-0 ">
                     
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
 
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
-                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
                                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " placeholder="name@company.com" required="" />
                             </div>
                             

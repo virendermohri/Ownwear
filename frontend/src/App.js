@@ -20,8 +20,10 @@ import { useEffect, useState } from 'react';
 import Checkout from './Components/Checkout';
 import Order from './Components/Order';
 import ForgotPassword from './Components/ForgotPassword';
+import { Link,useNavigate } from 'react-router-dom'
 
 function App() {
+  let history = useNavigate();
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   useEffect(() => {
@@ -63,7 +65,6 @@ function App() {
     if (itemCode in cart) {
       newCart[itemCode]["qty"] = cart[itemCode].qty - qty;
     }
-    console.log(newCart[itemCode]["qty"])
     if (newCart[itemCode]["qty"] <= 0) {
       delete newCart[itemCode]
 
@@ -75,6 +76,13 @@ function App() {
 
     setCart({})
     saveCart({})
+  }
+  const buynow=(itemCode, qty, price, name, size, variant)=>{
+    let newCart = {itemCode: {qty: 1, price, name, size, variant }};
+    setCart(newCart)
+    saveCart(newCart)
+   
+    history("/Checkout")
   }
   return (
     <>
@@ -93,7 +101,7 @@ function App() {
         <Route exact path='/Forgot-Password' element={<ForgotPassword/>} />
         <Route exact path='/Order' element={<Order/>} />
         <Route exact path='/Checkout' element={<Checkout cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
-        <Route exact path='/slug' element={<Slug cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
+        <Route exact path='/slug' element={<Slug cart={cart}  buynow={buynow} addToCart={addToCart} removeFromCart={removeFromCart} subTotal={subTotal} />} />
       </Routes>
 
       <Footer />

@@ -8,5 +8,5 @@ const OrderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     amount: { type: Number, required: true },
     status: { type: String, default: 'pendig', required: true },
-},{timestamps:true})
+})
 export default mongoose.model('Order',OrderSchema)
